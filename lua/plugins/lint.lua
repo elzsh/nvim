@@ -4,7 +4,7 @@ return {
 	config = function()
 		local lint = require("lint")
 		lint.linters_by_ft = {
-			dockerfile = { "hadolint" },
+			c = { "cppcheck" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
