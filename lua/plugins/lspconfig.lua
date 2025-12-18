@@ -29,6 +29,7 @@ return {
 
         -- Manually enable servers
         vim.lsp.enable({
+            "clangd",
             "lua_ls",
             "bashls",
             "jsonls",
@@ -37,12 +38,10 @@ return {
             "marksman",
             "pyright",
             "yamlls",
-            "phpactor",
             "ts_ls",
-            "vue_ls",
             "tailwindcss",
             "eslint",
-            "prismals"
+            "gopls",
         })
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('UserLspKeymaps', { clear = true }),
