@@ -1,31 +1,21 @@
 return {
     "neovim/nvim-lspconfig",
-    opts = {
-        -- Define custom settings for specific servers here.
-        -- Mason-lspconfig will pick these up automatically.
-        servers = {
-            eslint = {
-                settings = { format = false },
-            },
-            lua_ls = {
-                settings = {
-                    Lua = {
-                        diagnostics = { globals = { "vim" } },
-                        workspace = { checkThirdParty = false },
-                    },
+    config = function()
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    diagnostics = { globals = { "vim" } },
+                    workspace = { checkThirdParty = false },
                 },
             },
-        },
-    },
-    config = function(_, opts)
-        -- 1. Configure Diagnostics UI
+        })
+
         vim.diagnostic.config({
             virtual_text = true,
             severity_sort = true,
             float = { border = "rounded" },
         })
 
-        -- 2. Set up Keymaps when an LSP attaches to a file
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
             callback = function(args)
