@@ -4,8 +4,8 @@ return {
 		ensure_installed = {
 			"stylua",
 			"shfmt",
+			"jq",
 			"clang-format",
-			"cppcheck",
 		},
 	},
 }
