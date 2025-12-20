@@ -10,17 +10,6 @@ return {
 			},
 		})
 
-		vim.lsp.config("basedpyright", {
-			settings = {
-				basedpyright = {
-					analysis = {
-						typeCheckingMode = "basic",
-						ignore = { "*" },
-					},
-				},
-			},
-		})
-
 		vim.diagnostic.config({
 			virtual_text = true,
 			severity_sort = true,
