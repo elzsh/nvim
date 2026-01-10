@@ -10,6 +10,30 @@ return {
 			},
 		})
 
+		vim.lsp.config("clangd", {
+			cmd = {
+				"clangd",
+				"--function-arg-placeholders=0",
+			},
+		})
+
+		vim.lsp.config("basedpyright", {
+			settings = {
+				basedpyright = {
+					analysis = {
+						diagnosticMode = "openFilesOnly",
+						reportUnusedImport = "none",
+						reportUnusedVariable = "none",
+
+						reportMissingTypeStubs = false,
+
+						typeCheckingMode = "standard",
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
+		})
+
 		vim.diagnostic.config({
 			virtual_text = true,
 			severity_sort = true,

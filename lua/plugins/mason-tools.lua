@@ -1,9 +1,11 @@
 return {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-        ensure_installed = {
-            "stylua",
-            "shfmt",
-        },
-    },
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	opts = {
+		ensure_installed = {
+			"stylua",
+			"shfmt",
+			"clang-format",
+			"ruff",
+		},
+	},
 }
