@@ -2,7 +2,7 @@ return {
 	"rose-pine/neovim",
 	name = "rose-pine",
 	opts = {
-		variant = "main",
+		variant = "auto",
 		dim_inactive_windows = true,
 
 		styles = {

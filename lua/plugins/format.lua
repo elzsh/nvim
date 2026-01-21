@@ -6,6 +6,7 @@ return {
 			sh = { "shfmt" },
 			c = { "clang-format" },
 			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+			json = { "jq" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
