@@ -1,36 +1,84 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	cmd = "Telescope",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	config = function()
-		local builtin = require("telescope.builtin")
-
-		-- Keybindings
-		vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
-		vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Git files" })
-		vim.keymap.set("n", "<leader>vh", builtin.help_tags, { desc = "Help tags" })
-		vim.keymap.set("n", "<leader>ps", function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end, { desc = "Search string" })
-
-		-- Optional: Basic telescope setup for better defaults
-		require("telescope").setup({
-			defaults = {
-				-- Configure default options here
-				prompt_prefix = "🔍 ",
-				file_ignore_patterns = {
-					"node_modules",
-					".git/",
-					"*.pyc",
+	keys = {
+		{
+			"<leader>pf",
+			function()
+				require("telescope.builtin").find_files()
+			end,
+			desc = "Find files",
+		},
+		{
+			"<C-p>",
+			function()
+				require("telescope.builtin").git_files()
+			end,
+			desc = "Find Git files",
+		},
+		{
+			"<leader>ps",
+			function()
+				require("telescope.builtin").live_grep()
+			end,
+			desc = "Search project",
+		},
+		{
+			"<leader>pw",
+			function()
+				require("telescope.builtin").grep_string()
+			end,
+			desc = "Search word under cursor",
+		},
+		{
+			"<leader>pb",
+			function()
+				require("telescope.builtin").buffers()
+			end,
+			desc = "Find buffers",
+		},
+		{
+			"<leader>vh",
+			function()
+				require("telescope.builtin").help_tags()
+			end,
+			desc = "Search help",
+		},
+	},
+	opts = {
+		defaults = {
+			prompt_prefix = "❯ ",
+			selection_caret = "❯ ",
+			file_ignore_patterns = {
+				"node_modules/",
+				"%.git/",
+				"%.svelte%-kit/",
+				"build/",
+				"dist/",
+				"__pycache__/",
+				"%.pyc",
+			},
+			layout_strategy = "horizontal",
+			layout_config = {
+				horizontal = {
+					preview_width = 0.55,
 				},
 			},
-			pickers = {
-				git_files = {
-					theme = "ivy",
-				},
-				help_tags = {
-					theme = "ivy",
+		},
+		pickers = {
+			find_files = {
+				hidden = true,
+				find_command = {
+					"rg",
+					"--files",
+					"--hidden",
+					"--glob",
+					"!.git",
 				},
 			},
-		})
-	end,
+			git_files = { theme = "ivy" },
+			help_tags = { theme = "ivy" },
+		},
+	},
 }

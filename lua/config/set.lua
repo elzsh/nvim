@@ -1,36 +1,40 @@
--- [[ Basic Settings ]]
-vim.opt.nu = true                        -- Line numbers
-vim.opt.relativenumber = true            -- Relative line numbers
+-- Interface
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
+vim.opt.cursorline = true
+vim.opt.colorcolumn = "80"
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.wrap = false
 
--- [[ Indentation ]]
-vim.opt.tabstop = 4                      -- Number of spaces that a <Tab> in the file counts for
-vim.opt.softtabstop = 4                  -- Number of spaces that a <Tab> counts for while performing editing operations
-vim.opt.shiftwidth = 4                   -- Size of an indent
-vim.opt.expandtab = true                 -- Use spaces instead of tabs
-vim.opt.smartindent = true               -- Smart indentation
+-- Editing
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.confirm = true
+vim.opt.isfname:append("@-@")
 
--- [[ Line Wrapping ]]
-vim.opt.wrap = false                     -- Disable line wrap
+-- Search
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
--- [[ Backup and Undo ]]
-vim.opt.swapfile = false                 -- Disable swapfile
-vim.opt.backup = false                   -- Disable backup
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"  -- Set undo directory
-vim.opt.undofile = true                  -- Enable persistent undo
+-- Completion and responsiveness
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.updatetime = 200
+vim.opt.timeoutlen = 400
 
--- [[ Search ]]
-vim.opt.hlsearch = false                 -- Disable highlight on search
-vim.opt.incsearch = true                 -- Enable incremental search
-
--- [[ Appearance ]]
-vim.opt.termguicolors = true             -- True color support
-vim.opt.scrolloff = 8                    -- Minimum number of screen lines to keep above and below the cursor
-vim.opt.signcolumn = "yes"               -- Always show the sign column
-vim.opt.isfname:append("@-@")            -- Treat '@' as part of a file name
-vim.opt.colorcolumn = "80"               -- Highlight column at 80 characters
-
--- [[ Performance ]]
-vim.opt.updatetime = 50                  -- Faster completion
-
--- [[ Completion ]]
-vim.opt.completeopt = "menu,menuone,noselect" -- Better completion experience for nvim-cmp
+-- Persistent undo without swap or backup files
+vim.opt.swapfile = false
+vim.opt.backup = false
+local undo_dir = vim.fn.stdpath("state") .. "/undo"
+vim.fn.mkdir(undo_dir, "p")
+vim.opt.undodir = undo_dir
+vim.opt.undofile = true
